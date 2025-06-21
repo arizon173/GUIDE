@@ -2,8 +2,21 @@ let places = {};
 let events = [];
 
 const Telegram = window.Telegram.WebApp;
-Telegram.ready();
-Telegram.expand();
+
+document.addEventListener('DOMContentLoaded', () => {
+  Telegram.ready();
+
+  // Спробуємо одразу розгорнути
+  if (Telegram.expand) {
+    Telegram.expand();
+  }
+
+  // Додатково спроба через невеликий таймаут для гарантії
+  setTimeout(() => {
+    Telegram.expand();
+  }, 100); // 100 мс достатньо
+});
+
 
 // Мапа для відповідності кнопок до типів з даних
 const categoryMap = {
