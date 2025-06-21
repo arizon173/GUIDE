@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Львів Гід</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap&subset=cyrillic-ext" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🦁 Львів Гід</h1>
+      <button id="theme-toggle" class="theme-toggle-btn">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </header>
+    <main id="content"></main>
+    <nav>
+      <div id="places-submenu" class="glass-submenu hidden">
+      <button onclick="filterPlaces('restaurants')">Ресторани</button>
+      <button onclick="filterPlaces('parks')">Парки</button>
+      <button onclick="filterPlaces('museums')">Музеї</button>
+      <button onclick="filterPlaces('relax')">Відпочинок</button>
+      </div>
+      <div class="glass-radio-group">
+        <input type="radio" name="main-nav" id="nav-events">
+        <label for="nav-events">Події</label>
+        <input type="radio" name="main-nav" id="nav-places" checked>
+        <label for="nav-places">Місця</label>
+        <div class="glass-glider"></div>
+      </div>
+    </nav>
+  </div>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
