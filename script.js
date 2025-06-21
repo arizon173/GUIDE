@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (Telegram.expand) {
     Telegram.expand();
   }
+Telegram.setHeaderColor('#6a67d43'); // будь-який hex колір
 
   // Додатково спроба через невеликий таймаут для гарантії
   setTimeout(() => {
