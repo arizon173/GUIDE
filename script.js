@@ -2,22 +2,8 @@ let places = {};
 let events = [];
 
 const Telegram = window.Telegram.WebApp;
-
-document.addEventListener('DOMContentLoaded', () => {
-  Telegram.ready();
-
-  // Спробуємо одразу розгорнути
-  if (Telegram.expand) {
-    Telegram.expand();
-  }
-Telegram.setHeaderColor('#6a67d43'); // будь-який hex колір
-
-  // Додатково спроба через невеликий таймаут для гарантії
-  setTimeout(() => {
-    Telegram.expand();
-  }, 100); // 100 мс достатньо
-});
-
+Telegram.ready();
+Telegram.expand();
 
 // Мапа для відповідності кнопок до типів з даних
 const categoryMap = {
@@ -25,7 +11,6 @@ const categoryMap = {
   parks: 'park',
   museums: 'museum',
   relax: 'relax',
-  cinema: 'cinema'
 };
 
 // === 📍 Завантаження місць ===
@@ -78,36 +63,12 @@ async function loadEvents() {
   }
 }
 
-// === 🎨 Тема ===
-function initTheme() {
-  const savedTheme = localStorage.getItem('theme');
-  const isDark = savedTheme ? savedTheme === 'dark' : Telegram.themeParams.bg_color?.toLowerCase() !== '#ffffff';
-  document.body.classList.toggle('dark-theme', isDark);
-  document.body.style.backgroundColor = isDark ? 'var(--bg-dark)' : 'var(--bg-light)';
-  updateThemeIcon(isDark ? 'dark' : 'light');
-}
-
-function updateThemeIcon(theme) {
-  document.querySelector('.theme-icon').textContent = theme === 'dark' ? '☀️' : '🌙';
-}
-
-function toggleTheme() {
-  const isDark = document.body.classList.toggle('dark-theme');
-  const theme = isDark ? 'dark' : 'light';
-  localStorage.setItem('theme', theme);
-  document.body.style.backgroundColor = isDark ? 'var(--bg-dark)' : 'var(--bg-light)';
-  updateThemeIcon(theme);
-}
-
 // === 📍 Показ місць ===
 function showPlaces(category = '') {
   const content = document.getElementById('content');
   let html = '<h2>Місця у Львові</h2>';
 
-  // Якщо є фільтр - використовуємо правильний тип
   const realCategory = categoryMap[category] || category;
-
-  // Якщо фільтр пустий - показуємо всі місця
   const filteredPlaces = realCategory ? { [realCategory]: places[realCategory] || {} } : places;
 
   Object.entries(filteredPlaces).forEach(([cat, items]) => {
@@ -164,7 +125,6 @@ function showSubmenu(show) {
     submenu.classList.remove('hidden');
   } else {
     submenu.classList.add('hidden');
-    // Прибираємо активність з кнопок фільтрації при прихованні
     const buttons = document.querySelectorAll('.glass-submenu button');
     buttons.forEach(btn => btn.classList.remove('active'));
   }
@@ -196,11 +156,8 @@ function setupNavListeners() {
   });
 }
 
-// === 🔘 Тематика
-document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-
 // === 🚀 Старт
-initTheme();
 setupNavListeners();
 loadPlaces();
 loadEvents();
+
