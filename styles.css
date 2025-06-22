@@ -1,13 +1,13 @@
 :root {
-  --primary: #8B4513;
-  --secondary: #FFD700;
-  --bg-light: #FFF8E7;
-  --bg-dark: #1A1A1A;
-  --text-light: #333;
-  --text-dark: #F5F5F5;
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --header-gradient: linear-gradient(135deg, #FFD700, #FFA500);
+  --primary: #5C1A1B;           
+  --secondary: #312f2c;         
+  --bg-light: #004643; 
+  --by-dark:   #5C1A1B;                 
+  --text-light: #f0ede5;        
+  --text-dark: #FFFFFF;        
+  --card-shadow: 0 4px 12px rgba(92, 26, 27, 0.15);           
 }
+
 
 * {
   margin: 0;
@@ -17,24 +17,12 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background: var(--bg-light);
-  color: var(--text-light);
   transition: background 0.3s, color 0.3s;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: var(--header-gradient);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  padding: 10px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 
 h1 {
   font-size: 1.5rem;
@@ -79,20 +67,22 @@ nav {
 }
 
 main {
-  margin-top: 60px;
+  margin-top: 15px;
   margin-bottom: 80px;
   padding: 15px;
 }
 
 .place-card {
-  background: var(--bg-light);
+  background: rgba(255, 255, 255, 0.06); /* дуже прозоре світле скло */
+  backdrop-filter: blur(10px);
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 16px;
-  box-shadow: var(--card-shadow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.5s ease forwards;
+  transition: transform 0.3s ease;
 }
 
 .place-card:nth-child(1) { animation-delay: 0.1s; }
@@ -109,7 +99,6 @@ main {
 
 .place-card:hover {
   transform: translateY(-8px);
-  transition: transform,'(0.3s ease);
 }
 
 .place-card img {
@@ -123,21 +112,21 @@ main {
 .place-card h4 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--primary);
+  color: #fff; /* контрастний білий текст */
   margin-bottom: 6px;
 }
 
 .place-card p {
   font-size: 0.9rem;
-  color: var(--text-light);
+  color: #ddd; /* м'який світлий текст */
   margin-bottom: 10px;
 }
 
 .place-card a {
   display: inline-block;
   padding: 8px 16px;
-  background: var(--secondary);
-  color: var(--text-light);
+  background: #D9B382; /* бежево-золотистий */
+  color: #1a1a1a; /* темний текст */
   text-decoration: none;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -146,18 +135,17 @@ main {
 }
 
 .place-card a:hover {
-  background: var(--primary);
+  background: #5C1A1B; /* бордо на hover */
   color: #fff;
   transform: translateY(-2px);
 }
 
 @media (max-width: 414px) {
-  h1 { font-size: 1.3rem; }
-  nav { padding: 8px; }
   .place-card img { height: 120px; }
   .place-card h4 { font-size: 1.1rem; }
   .place-card p { font-size: 0.85rem; }
 }
+
 
 .dark-theme {
   --bg-light: var(--bg-dark);
@@ -168,16 +156,17 @@ main {
 
 /* Glassmorphism Radio Group */
 .glass-radio-group {
-  --bg: rgba(255, 255, 255, 0.1);
+  --bg: rgba(255, 255, 255, 0.06); /* дуже легке світле скло */
   display: flex;
   background: var(--bg);
   border-radius: 1rem;
-  backdrop-filter: blur(12px);
-  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.2), inset -1px -1px 6px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(14px);
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.05), inset -1px -1px 6px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   width: calc(100% - 20px);
   max-width: 360px;
   margin: 0 auto;
+  position: relative;
 }
 
 .glass-radio-group input {
@@ -194,7 +183,7 @@ main {
   padding: 0.8rem 1rem;
   cursor: pointer;
   font-weight: 500;
-  color: var(--text-light);
+  color: #f0f0f0;
   position: relative;
   z-index: 2;
   transition: color 0.3s, transform 0.3s;
@@ -203,11 +192,6 @@ main {
 .glass-radio-group label:hover {
   color: #fff;
   transform: scale(1.05);
-}
-
-.glass-radio-group label:focus,
-.glass-radio-group label:active {
-  outline: none;
 }
 
 .glass-radio-group input:checked + label {
@@ -222,18 +206,20 @@ main {
   border-radius: 1rem;
   z-index: 1;
   transition: transform 0.5s cubic-bezier(0.37, 1.95, 0.66, 0.56), background 0.4s;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 165, 0, 0.7));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08)); /* світлий тонований */
 }
 
 #nav-events:checked ~ .glass-glider {
   transform: translateX(0%);
-  background: linear-gradient(135deg, rgba(255, 69, 90, 0.4), rgba(255, 99, 132, 0.7));
+  background: linear-gradient(135deg, rgba(180, 180, 180, 0.2), rgba(220, 220, 220, 0.1));
 }
 
 #nav-places:checked ~ .glass-glider {
   transform: translateX(100%);
-  background: linear-gradient(135deg, rgba(139, 69, 19, 0.4), rgba(210, 105, 30, 0.7));
+  background: linear-gradient(135deg, rgba(200, 200, 200, 0.2), rgba(255, 255, 255, 0.12));
 }
+
+
 
 /* Glassmorphism Submenu */
 .glass-submenu {
